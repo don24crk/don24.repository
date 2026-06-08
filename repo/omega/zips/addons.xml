@@ -1,7 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addons>
+<?xml version='1.0' encoding='UTF-8'?>
+<addons><addon id="don24.repository" name="don24 Repository" version="1.0" provider-name="don24crk">
+    <extension point="xbmc.addon.repository" name="don24 Repository">
+        <dir>
+			<info compressed="false">https://raw.github.com/don24crk/don24.repository/refs/heads/master/repo/omega/zips/addons.xml</info>
+	        <checksum>https://raw.github.com/don24crk/don24.repository/refs/heads/master/repo/omega/zips/addons.xml.md5</checksum>
+	        <datadir zip="true">https://raw.github.com/don24crk/don24.repository/refs/heads/master/repo/omega/zips/</datadir>
+            <hashes>false</hashes>
+        </dir>
+       </extension>
+       <extension point="xbmc.addon.metadata">
+       <platform>all</platform>
+	   <language>en</language>
+	   <summary lang="en">don24 Repository</summary>
+	   <description lang="en">don24crk</description>
+	   <disclaimer lang="en">don24crk</disclaimer>
+	   <license>GNU GENERAL PUBLIC LICENSE, 7 Jun 2026</license>
+       <assets>
+       <icon>icon.png</icon>
+       <fanart>fanart.jpg</fanart>
+       </assets>
+       </extension>
 
-<addon id="plugin.video.AliveTR"
+	  <addon id="plugin.video.AliveTR"
        name="AliveTR By don24crk"
        version="1.0"
        provider-name="don24crk">
@@ -26,7 +46,6 @@ Kindly note that AliveTR By don24crk is not an official part of the media player
 			<fanart>fanart.jpg</fanart>
 		</assets>
   </extension>
-</addon>
 
 <addon id="plugin.video.GreekTV"
        name="GreekTV By don24crk"
@@ -53,9 +72,8 @@ Kindly note that GreekTV By don24crk is not an official part of the media player
 			<fanart>fanart.jpg</fanart>
 		</assets>
   </extension>
-</addon>
 
-<addon id="plugin.video.dailymotion_com" name="DailyMotion.com" version="2.4.5~nightly" provider-name="gujal">
+  <addon id="plugin.video.dailymotion_com" name="DailyMotion.com" version="2.4.5~nightly" provider-name="gujal">
     <requires>
         <!-- <import addon="xbmc.python" version="3.0.0"/> -->
         <import addon="script.module.six" version="0.0.1"/>
@@ -97,6 +115,4 @@ Kindly note that GreekTV By don24crk is not an official part of the media player
             <screenshot>resources/images/screenshot-03.jpg</screenshot>
         </assets>
     </extension>
-</addon>
-
-</addons>
+</addon></addons>
