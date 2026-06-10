@@ -1,17 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <addons>
 <addon id="don24.repository" name="don24.repository" version="1.0" provider-name="don24crk">
-    <extension point="xbmc.addon.repository" name="Home of GreekTV Addon">
-            <info compressed="false">https://github.com/don24crk/don24.repository/raw/refs/heads/master/repo_dir/omega/zips/addons.xml.gz</info>
-            <checksum>https://github.com/don24crk/don24.repository/raw/refs/heads/master/repo_dir/omega/zips/addons.xml.gz.md5</checksum>
-            <datadir zip="true">https://raw.github.com/don24crk/don24.repository/refs/heads/master/repo_dir/omega/zips/</datadir>
-            <hashes>false</hashes> 
-		<dir>
-            <info compressed="false">https://github.com/don24crk/don24.repository/raw/refs/heads/master/repo_dir/omega/zips/addons.xml</info>
+<extension point="xbmc.addon.repository" name="Home of GreekTV Addon">
+            <info compressed="true">https://github.com/don24crk/don24.repository/raw/refs/heads/master/repo_dir/omega/zips/addons.xml</info>
             <checksum>https://github.com/don24crk/don24.repository/raw/refs/heads/master/repo_dir/omega/zips/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.github.com/don24crk/don24.repository/refs/heads/master/repo_dir/omega/zips/</datadir>
-			<hashes>false</hashes> 
-        </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
