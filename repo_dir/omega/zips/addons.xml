@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-
 <addon id="plugin.video.AliveTR"
        name="AliveTR By don24crk"
        version="1.0"
@@ -27,7 +26,6 @@ Kindly note that AliveTR By don24crk is not an official part of the media player
 		</assets>
   </extension>
 </addon>
-
 <addon id="plugin.video.dailymotion_com" name="DailyMotion.com" version="2.4.5~nightly" provider-name="gujal">
     <requires>
         <!-- <import addon="xbmc.python" version="3.0.0"/> -->
@@ -71,7 +69,6 @@ Kindly note that AliveTR By don24crk is not an official part of the media player
         </assets>
     </extension>
 </addon>
-
 <addon id="plugin.video.GreekTV"
        name="GreekTV By don24crk"
        version="1.5"
@@ -98,5 +95,4 @@ Kindly note that GreekTV By don24crk is not an official part of the media player
 		</assets>
   </extension>
 </addon>
-
 </addons>
