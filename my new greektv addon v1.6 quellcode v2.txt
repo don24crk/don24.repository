@@ -7,7 +7,7 @@ from urllib.error import URLError, HTTPError
 from urllib.parse import urlparse
 
 ADDON_ID = 'plugin.video.GreekTV-2-0'
-ADDON = xbmcaddon.Addon(ADDON_ID)
+ADDON = xbmcaddon.Addon()
 
 class GreekTV:
     def __init__(self):
