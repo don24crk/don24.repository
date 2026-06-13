@@ -11,9 +11,9 @@ ADDON = xbmcaddon.Addon()
 
 class GreekTV:
     def __init__(self):
-        self.proxy_ip = ADDON.getSetting('proxy_ip')
-        self.proxy_port = ADDON.getSetting('proxy_port')
-        self.playlist_url = ADDON.getSetting('playlist_url')
+        self.proxy_ip = ADDON.getSetting()
+        self.proxy_port = ADDON.getSetting()
+        self.playlist_url = ADDON.getSetting()
         self.categories = {
             'LiveTV':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/android.m3u",
             'SEFLIX':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/SEFLIX.m3u",
