@@ -1,0 +1,46 @@
+import xbmc
+import xbmcaddon
+import xbmcgui
+import xbmcplugin
+import requests
+import sys
+import urllib.parse
+
+addon = xbmcaddon.Addon()
+addon_handle = int(sys.argv[1])
+base_url = sys.argv[0]
+
+SETTING_PROXY_IP = "proxy_ip"
+SETTING_PROXY_PORT = "proxy_port"
+SETTING_TVG_GUIDE = "https://ext.greektv.app/epg/epg.xml.gz"
+
+CATEGORIES = {
+    "LIVETV": "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/android.m3u",
+    "SEFLIX": "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/SEFLIX.m3u",
+    "SUPERMAMI": "http://example.com/supermami.m3u",
+    "GREEKMOVIES": "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/GreekMovies.m3u",
+    "JESUSMOVIES": "http://example.com/jesusmovies.m3u",
+    "KIDSMOVIES": "http://example.com/kidsmovies.m3u",
+    "ALIKI VOUGIOUKLAKI TENIES": "http://example.com/aliki.m3u"
+}
+
+def list_streams(category):
+    m3u_url = CATEGORIES.get(category)
+    if not m3u_url:
+        xbmcgui.Dialog().notification("Error", "Category not found", xbmcgui.NOTIFICATION_ERROR)
+        return
+
+    try:
+        response = requests.get(m3u_url, timeout=10)
+        response.raise_for_status()
+        lines = response.text.splitlines()
+        for line in lines:
+            if line.startswith("#EXTINF:"):
+                # Extract stream information and add to the directory
+                pass
+    except Exception as e:
+        xbmcgui.Dialog().notification("Error", f"Failed to load playlist: {e}", xbmcgui.NOTIFICATION_ERROR)
+
+if __name__ == '__main__':
+    category = sys.argv[2][1:] if len(sys.argv) > 2 else ''
+    list_streams(category)
