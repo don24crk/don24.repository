@@ -1,0 +1,38 @@
+import xbmc
+import xbmcaddon
+import xbmcgui
+import requests
+
+ADDON_ID = 'plugin.video.GreekTV'
+ADDON = xbmcaddon.Addon(ADDON_ID)
+
+class GreekTV:
+    def __init__(self):
+        self.proxy_ip = ADDON.getSetting('proxy_ip')
+        self.proxy_port = ADDON.getSetting('proxy_port')
+        self.playlist_url = ADDON.getSetting('playlist_url')
+        self.categories = {
+            'LiveTV': [],
+            'SEFLIX': [],
+            'GREEKMOVIES': [],
+            'JESUSMOVIES': [],
+            'KIDSMOVIES': [],
+            'ALIKI VOUGIOUKLAKI TENIES': []
+        }
+
+    def fetch_playlist(self):
+        response = requests.get(self.playlist_url, proxies={"http": f"http://{self.proxy_ip}:{self.proxy_port}", "https": f"http://{self.proxy_ip}:{self.proxy_port}"})
+        return response.text.splitlines()
+
+    def add_categories(self):
+        for category in self.categories.keys():
+            xbmcgui.Dialog().ok("Category Added", category)
+
+    def run(self):
+        self.add_categories()
+        playlist = self.fetch_playlist()
+        for item in playlist:
+            xbmcgui.Dialog().ok("Playing", item)
+
+if __name__ == '__main__':
+    GreekTV().run()
