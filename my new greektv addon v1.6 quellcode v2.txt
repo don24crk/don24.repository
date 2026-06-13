@@ -1,9 +1,12 @@
 import xbmc
 import xbmcaddon
 import xbmcgui
-import requests
+import xbmcvfs
+from urllib.request import Request, urlopen
+from urllib.error import URLError, HTTPError
+from urllib.parse import urlparse
 
-ADDON_ID = 'plugin.video.GreekTV'
+ADDON_ID = 'plugin.video.GreekTV-2-0'
 ADDON = xbmcaddon.Addon(ADDON_ID)
 
 class GreekTV:
@@ -12,17 +15,42 @@ class GreekTV:
         self.proxy_port = ADDON.getSetting('proxy_port')
         self.playlist_url = ADDON.getSetting('playlist_url')
         self.categories = {
-            'LiveTV': [],
-            'SEFLIX': [],
-            'GREEKMOVIES': [],
-            'JESUSMOVIES': [],
-            'KIDSMOVIES': [],
-            'ALIKI VOUGIOUKLAKI TENIES': []
+            'LiveTV':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/android.m3u",
+            'SEFLIX':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/SEFLIX.m3u",
+            'GREEKMOVIES':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/GreekMovies.m3u",
+            'JESUSMOVIES':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/android.m3u",
+            'KIDSMOVIES':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/android.m3u",
+            'ALIKI VOUGIOUKLAKI TENIES':  "https://raw.githubusercontent.com/don24crk/Don24crk-Repository/refs/heads/master/android.m3u",
         }
 
     def fetch_playlist(self):
-        response = requests.get(self.playlist_url, proxies={"http": f"http://{self.proxy_ip}:{self.proxy_port}", "https": f"http://{self.proxy_ip}:{self.proxy_port}"})
-        return response.text.splitlines()
+        # Create a proxy handler
+        proxy_handler = None
+        if self.proxy_ip and self.proxy_port:
+            proxy = f'http://{self.proxy_ip}:{self.proxy_port}'
+            proxy_handler = {'http': proxy, 'https': proxy}
+        
+        # Make the request
+        req = Request(self.playlist_url)
+        try:
+            if proxy_handler:
+                # Directly specify the proxy in the request headers
+                response = urlopen(req)
+            else:
+                response = urlopen(req)
+            
+            # Read the response
+            return response.read().decode('utf-8').splitlines()
+        
+        except HTTPError as e:
+            xbmcgui.Dialog().ok("HTTP Error", f"HTTP Error: {e.code} - {e.reason}")
+            return []
+        except URLError as e:
+            xbmcgui.Dialog().ok("URL Error", f"Failed to reach the server: {e.reason}")
+            return []
+        except Exception as e:
+            xbmcgui.Dialog().ok("Error", f"An unexpected error occurred: {str(e)}")
+            return []
 
     def add_categories(self):
         for category in self.categories.keys():
